@@ -26,7 +26,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 	@Override
 	public List<ReceptDTO> getReceptList() throws DALException {
 		List<ReceptDTO> list = new ArrayList<ReceptDTO>();
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer");
+		ResultSet rs = Connector.doQuery("SELECT * FROM Recept");
 		try
 		{
 			while (rs.next()) 
@@ -53,5 +53,7 @@ public class MySQLReceptDAO implements ReceptDAO {
 				"' WHERE recept_id = " + recept.getReceptId()
 		);
 	}
+	
+	
 
 }
