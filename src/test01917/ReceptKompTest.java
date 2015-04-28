@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import connector01917.Connector;
 import daoimpl01917.MySQLProduktBatchDAO;
+import daoimpl01917.MySQLReceptKompDAO;
 import daointerfaces01917.DALException;
 import dto01917.ProduktBatchDTO;
 
@@ -14,37 +15,24 @@ public class ReceptKompTest {
 		catch (IllegalAccessException e) { e.printStackTrace(); }
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
+		MySQLReceptKompDAO rk = new MySQLReceptKompDAO();
 
-		System.out.println("produktbatch nummer 1:");
-		MySQLProduktBatchDAO pb = new MySQLProduktBatchDAO();
-		try { System.out.println(pb.getProduktBatch(1)); }
+		System.out.println("Vi undersøger om element med recept_id 10 og raavare_id 10:");
+		System.out.println(" ");
+		try { System.out.println(rk.getReceptKomp(10,10)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Indsaettelse af ny produktbatch med pb_id =  6");
-		ProduktBatchDTO pb1 = new ProduktBatchDTO(6,2,3);
-		try { pb.createProduktBatch(pb1); }
-		catch (DALException e) { System.out.println(e.getMessage()); }	
-
-		System.out.println("Operatoer nummer 6:");
-		try { System.out.println(pb.getProduktBatch(6)); }
+		
+		System.out.println(" ");
+		
+		System.out.println("Vi undersøger om listen indeholder dette element:");
+		try { System.out.println(rk.getReceptKompList()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Opdatering af initialer for operatoer nummer 6");
-		pb1.setStatus(10);
-		try { pb.updateProduktBatch(pb1); }
-		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("ProduktBatch nummer 6:");
-		try { System.out.println(pb.getProduktBatch(6)); }
-		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Alle operatoerer:");
-		try { System.out.println(pb.getProduktBatchList()); }
-		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Operatoer nummer 5:");
-		try { System.out.println(pb.getProduktBatch(5)); }
-		catch (DALException e) { System.out.println(e.getMessage()); }
-
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println(" ");
+		}
+		
+		
+		
 	}
 }
