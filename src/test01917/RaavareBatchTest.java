@@ -4,8 +4,10 @@ import java.sql.SQLException;
 
 import connector01917.Connector;
 import daoimpl01917.MySQLProduktBatchDAO;
+import daoimpl01917.MySQLRaavareBatchDAO;
 import daointerfaces01917.DALException;
 import dto01917.ProduktBatchDTO;
+import dto01917.RaavareBatchDTO;
 
 public class RaavareBatchTest {
 	public static void main(String[] args) {
@@ -15,36 +17,40 @@ public class RaavareBatchTest {
 		catch (ClassNotFoundException e) { e.printStackTrace(); }
 		catch (SQLException e) { e.printStackTrace(); }
 
-		System.out.println("produktbatch nummer 1:");
-		MySQLProduktBatchDAO pb = new MySQLProduktBatchDAO();
-		try { System.out.println(pb.getProduktBatch(1)); }
+		System.out.println("vi undersøger om en raavarebatch med id 8 findes (med get):");
+		MySQLRaavareBatchDAO rb = new MySQLRaavareBatchDAO();
+		try { System.out.println(rb.getRaavareBatch(8)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Indsaettelse af ny produktbatch med pb_id =  6");
-		ProduktBatchDTO pb1 = new ProduktBatchDTO(6,2,3);
-		try { pb.createProduktBatch(pb1); }
-		catch (DALException e) { System.out.println(e.getMessage()); }	
-
-		System.out.println("Operatoer nummer 6:");
-		try { System.out.println(pb.getProduktBatch(6)); }
+		
+		System.out.println("Vi undersøger om listen indeholder dette element (med getlist)");
+		try { System.out.println(rb.getRaavareBatchList()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Opdatering af initialer for operatoer nummer 6");
-		pb1.setStatus(10);
-		try { pb.updateProduktBatch(pb1); }
+		
+		System.out.println("Vi opretter en ny Raavarebatch med id 8, raavare_id 8 og maengde 1000");
+		RaavareBatchDTO hej = new RaavareBatchDTO(8,7,1000);
+		try { rb.createRaavareBatch(hej); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("ProduktBatch nummer 6:");
-		try { System.out.println(pb.getProduktBatch(6)); }
+		
+		System.out.println("Vi prøver at finde den nye Raavare batch med id 8 (med get)");
+		try { System.out.println(rb.getRaavareBatch(8)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Alle operatoerer:");
-		try { System.out.println(pb.getProduktBatchList()); }
+		
+		System.out.println("Vi ser om listen har dette element (med getlist)");
+		try { System.out.println(rb.getRaavareBatchList()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
-		System.out.println("Operatoer nummer 5:");
-		try { System.out.println(pb.getProduktBatch(5)); }
+		
+		System.out.println("Vi prøver at update den nye raavarebatch, så mængden bliver fordoblet");
+		RaavareBatchDTO hej2 = new RaavareBatchDTO(8,7,2000);
+		try { rb.updateRaavareBatch(hej2); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
-
+		
+		System.out.println("Vi prøver at finde den nye Raavare batch med id 8 (med get)");
+		try { System.out.println(rb.getRaavareBatch(8)); }
+		catch (DALException e) { System.out.println(e.getMessage()); }
+		
+		System.out.println("Vi ser om listen har dette element (med getlist)");
+		try { System.out.println(rb.getRaavareBatchList()); }
+		catch (DALException e) { System.out.println(e.getMessage()); }
+		
 	}
 }
