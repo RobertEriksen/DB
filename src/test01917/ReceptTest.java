@@ -19,6 +19,7 @@ public class ReceptTest {
 
 		System.out.println("Vi forsøger at finde recept nr 4, der ikke findes endnu (Via getrecept)");
 		MySQLReceptDAO recept = new MySQLReceptDAO();
+		
 		try { System.out.println(recept.getRecept(4)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		

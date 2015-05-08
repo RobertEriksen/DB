@@ -23,12 +23,16 @@ public class RaavareTest {
 		try { System.out.println(r.getRaavare(8)); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
+		
+		
 		System.out.println("Vi undersøger om vi kan finde denne i listen (med getlist)");
 		try { System.out.println(r.getRaavareList()); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
 		System.out.println("Vi opretter en ny raavare, med id 8, navn Ananas og Leverandoer Martin's special");
 		RaavareDTO hej = new RaavareDTO(8,"Ananas","Martins Special");
+		RaavareDTO hejmeddig = new RaavareDTO(8,"Ananas","Martins Special");
+		
 		try { r.createRaavare(hej); }
 		catch (DALException e) { System.out.println(e.getMessage()); }
 		
