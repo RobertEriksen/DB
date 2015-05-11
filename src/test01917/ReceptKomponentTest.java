@@ -11,7 +11,7 @@ import daointerfaces01917.DALException;
 import dto01917.ReceptKompDTO;
 
 
-public class Test_af_receptkomp {
+public class ReceptKomponentTest {
 
 	@Test
 	public void test() throws DALException {
