@@ -14,7 +14,8 @@ import dto01917.OperatoerDTO;
 public class MySQLOperatoerDAO implements OperatoerDAO {
 	
 	public OperatoerDTO getOperatoer(int oprId) throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
+//		ResultSet rs = Connector.doQuery("SELECT * FROM operatoer WHERE opr_id = " + oprId);
+		ResultSet rs = Connector.doQuery("CALL getOperatoer("+oprId+")"); // bruger vores stored procedure i databasen
 		try {
 	    	if (!rs.first()) throw new DALException("Operatoeren " + oprId + " findes ikke!");
 	    	return new OperatoerDTO(rs.getInt("opr_id"), rs.getString("opr_navn"), rs.getString("ini"), rs.getString("cpr"), rs.getString("password"));
